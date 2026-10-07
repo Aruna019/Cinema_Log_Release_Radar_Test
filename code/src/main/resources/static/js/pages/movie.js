@@ -14,7 +14,7 @@ const movieId = +$('#main').dataset.movieId;
 async function render() {
   const [m, rv, similar] = await Promise.all([movies.get(movieId), reviews.forMovie(movieId), movies.similar(movieId, 12)]);
   cache(m);
-  document.title = `${m.title} · Cinema Log`;
+  document.title = `${m.title} · POPPY NIGHT`;
   const entry = st.watched.get(m.id), rem = st.reminders.get(m.id), out = m.released;
   const mine = rv.reviews.find(r => r.mine);
   $('#page').innerHTML = `
@@ -48,8 +48,8 @@ async function render() {
       ${secHead('what people thought', { id: 'h-rev', note: out ? `${rv.reviews.length} review${rv.reviews.length === 1 ? '' : 's'}` : 'no one has seen it yet' })}
       <div class="reviews">
         <div>${rv.reviews.length ? rv.reviews.map(reviewRow).join('')
-          : emptyState(D.ghost(), 'quiet in here…', out ? 'Be the first to say something.' : `Reviews open on ${fmtMD(m.releaseDate)}. Set a reminder so you don’t miss it.`,
-            out ? '' : `<button class="btn" data-act="remind" data-id="${m.id}">${ic('bell')}Remind me</button>`)}</div>
+      : emptyState(D.ghost(), 'quiet in here…', out ? 'Be the first to say something.' : `Reviews open on ${fmtMD(m.releaseDate)}. Set a reminder so you don’t miss it.`,
+        out ? '' : `<button class="btn" data-act="remind" data-id="${m.id}">${ic('bell')}Remind me</button>`)}</div>
         ${out && st.loggedIn ? quickReviewForm(rv, mine, entry) : ''}
       </div>
     </section>

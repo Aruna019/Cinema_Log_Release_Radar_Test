@@ -1,4 +1,3 @@
-
 package com.cinemalog.service.impl;
 
 import java.time.Clock;
@@ -23,7 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class MovieSyncServiceImpl implements MovieSyncService {
 
-    private static final int MAX_SEARCH_IMPORT = 5;
+    private static final int MAX_SEARCH_IMPORT = 20;
 
     private final MovieCatalogSource catalogSource;
     private final MovieRepository movieRepository;
